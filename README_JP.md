@@ -1,578 +1,297 @@
+<div align="center">
+
+<img src="./web/public/favicon.svg" alt="GPT-Load" width="96">
+
 # GPT-Load
 
-[English](README.md) | [中文](README_CN.md) | 日本語
+**マルチチャネル・マルチ認証情報向けのセルフホスト AI ゲートウェイ**
 
-[![Release](https://img.shields.io/github/v/release/tbphp/gpt-load)](https://github.com/tbphp/gpt-load/releases)
-![Go Version](https://img.shields.io/badge/Go-1.23+-blue.svg)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+API キー、サブスクリプションアカウント、トラフィック制御、障害処理、リクエストログ、使用量集計を一つの入口にまとめます。
 
-複数のAIサービスを統合する必要がある企業や開発者向けに特別に設計された、高性能でエンタープライズグレードのAI APIトランスペアレントプロキシサービス。Goで構築され、インテリジェントなキー管理、ロードバランシング、包括的な監視機能を備え、高並行性の本番環境向けに設計されています。
+[English](README.md) · [中文](README_CN.md) · 日本語 | [公式サイト](https://www.gpt-load.com)
 
-詳細なドキュメントについては、[公式ドキュメント](https://www.gpt-load.com/docs?lang=ja)をご覧ください。
+[![Release](https://img.shields.io/github/v/tag/tbphp/gpt-load?filter=v2.*)](https://github.com/tbphp/gpt-load/releases)
+[![Docker](https://img.shields.io/badge/Docker-ghcr.io%2Ftbphp%2Fgpt--load%3A2-2496ED?logo=docker&logoColor=white)](https://github.com/tbphp/gpt-load/pkgs/container/gpt-load)
+[![Go](https://img.shields.io/badge/Go-1.27-00ADD8?logo=go&logoColor=white)](go.mod)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-<a href="https://trendshift.io/repositories/14880" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14880" alt="tbphp%2Fgpt-load | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-<a href="https://hellogithub.com/repository/tbphp/gpt-load" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=554dc4c46eb14092b9b0c56f1eb9021c&claim_uid=Qlh8vzrWJ0HCneG" alt="Featured｜HelloGitHub" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<a href="https://trendshift.io/repositories/14880" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14880" alt="tbphp/gpt-load | Trendshift" width="220" height="48"/></a>
+<a href="https://hellogithub.com/repository/tbphp/gpt-load" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=554dc4c46eb14092b9b0c56f1eb9021c&claim_uid=Qlh8vzrWJ0HCneG" alt="Featured｜HelloGitHub" width="220" height="47"/></a>
 
-## 特徴
+</div>
 
-- **トランスペアレントプロキシ**: ネイティブAPIフォーマットの完全な保持、OpenAI、Google Gemini、Anthropic Claudeなどのフォーマットをサポート
-- **インテリジェントキー管理**: グループベース管理、自動ローテーション、障害復旧を備えた高性能キープール
-- **ロードバランシング**: サービスの可用性を向上させる複数のアップストリームエンドポイント間の重み付けロードバランシング
-- **スマート障害処理**: サービスの継続性を確保する自動キーブラックリスト管理と復旧メカニズム
-- **動的設定**: システム設定とグループ設定は再起動不要のホットリロードをサポート
-- **エンタープライズアーキテクチャ**: 水平スケーリングと高可用性をサポートする分散リーダー・フォロワーデプロイメント
-- **モダンな管理**: Vue 3ベースの直感的で使いやすいWeb管理インターフェース
-- **包括的な監視**: リアルタイム統計、ヘルスチェック、詳細なリクエストログ
-- **高性能設計**: ゼロコピーストリーミング、接続プール再利用、アトミック操作
-- **本番対応**: グレースフルシャットダウン、エラー復旧、包括的なセキュリティメカニズム
-- **デュアル認証**: 管理とプロキシの分離認証、プロキシ認証はグローバルおよびグループレベルのキーをサポート
+---
 
-## サポートされているAIサービス
+## スポンサー
 
-GPT-Loadは、さまざまなAIサービスプロバイダーのネイティブAPIフォーマットを完全に保持するトランスペアレントプロキシサービスとして機能します：
+<sub>[スポンサーになる](mailto:tangb7420@gmail.com)</sub>
 
-- **OpenAIフォーマット**: 公式OpenAI API、Azure OpenAI、その他のOpenAI互換サービス
-- **Google Geminiフォーマット**: Gemini Pro、Gemini Pro VisionなどのモデルのネイティブAPI
-- **Anthropic Claudeフォーマット**: Claudeシリーズモデル、高品質な会話とテキスト生成をサポート
+<details open>
+<summary>スポンサー詳細（折りたたみ可能）</summary>
+
+<a href="https://modelflare.dev/sign-up?utm_source=github&amp;utm_campaign=gptload" target="_blank" rel="sponsored noopener noreferrer"><img src="./screenshot/modelflare-banner-ja.png" alt="Modelflare"></a>
+
+本プロジェクトをご支援いただいている Modelflare に感謝します！Modelflare：フルスペック、安定、水増しなし。世界の SOTA モデルを、より低いコストで。米国拠点の Havenbyte LLC が運営する Modelflare は、一般的な互換プロトコルを通じて GPT、Claude、Gemini、Grok などの主要モデルに対応し、さらに 40 以上の画像・動画モデルも利用できます。
+
+注目は**キャッシュ補償**です。対象の OpenAI グループ（価格優先・安定・プレミアム）は、1 日のキャッシュヒット率をそれぞれ 65%、75%、85% で保証します。対象リクエストがこの水準に達しない場合、Modelflare が差額を返金し、精算後に利用状況ダッシュボードで確認できます。
+
+**特別オファー**：US&#36;20 を 1 回チャージすると、価格倍率 0.015 倍の GPT 割引グループが解放されます。US&#36;50 を 1 回チャージすると、価格倍率 0.03 倍の Claude 割引グループが解放されます。<a href="https://modelflare.dev/sign-up?utm_source=github&amp;utm_campaign=gptload" target="_blank" rel="sponsored noopener noreferrer">こちらの専用リンク</a>から登録して始めましょう。
+
+---
+
+<table>
+<tbody>
+<tr>
+<td width="180"><a href="https://ofox.ai/?utm_source=github&amp;utm_medium=sponsorship&amp;utm_content=gpt_load" target="_blank" rel="noopener noreferrer"><img src="./screenshot/ofoxai.svg" alt="OfoxAI" width="150"></a></td>
+<td><strong>OfoxAI：テキスト・画像・動画 AI を一つのプラットフォームで</strong><br>OfoxAI は、複数のプロバイダーのテキスト・画像・動画モデルを集約する AI API プラットフォームです。OpenAI 互換 API と Anthropic・Gemini のネイティブ API に対応。開発者は一つのプラットフォームから AI アプリ、エージェント、コンテンツ制作向けのモデルを利用し、タスクに合った機能を選べます。 <a href="https://ofox.ai/?utm_source=github&amp;utm_medium=sponsorship&amp;utm_content=gpt_load" target="_blank" rel="noopener noreferrer">OfoxAI のモデルと API を見る →</a></td>
+</tr>
+<tr>
+<td width="180"><a href="https://www.packyapi.ai/register?aff=ahiS" target="_blank" rel="sponsored noopener noreferrer"><picture><source media="(prefers-color-scheme: dark)" srcset="./screenshot/packycode-dark.png"><source media="(prefers-color-scheme: light)" srcset="./screenshot/packycode-light.png"><img src="./screenshot/packycode-light.png" alt="PackyCode" width="150"></picture></a></td>
+<td><strong>PackyCode</strong><br>PackyCode は、安定性と効率性を重視した AI API 中継サービスです。ひとつの API エンドポイントと API キーで主要な大規模モデルに接続できます。統一ドメイン、統一キー、スマートな障害切り替えに対応し、可用性は 97% としています。人民元で 1:1 チャージでき、為替差損や追加手数料の心配はありません。新規ユーザーは初回チャージ割引と $1 の無料体験クレジットを受け取れ、複数グループでは最大 80% の割引、Codex／Claude Code 専用の高速ルートも利用できます。<a href="https://www.packyapi.ai/register?aff=ahiS" target="_blank" rel="sponsored noopener noreferrer">リンクから登録して、すぐに利用を開始できます。</a></td>
+</tr>
+<tr>
+<td width="180"><a href="https://sidrune.ai/register?source=github&amp;campaign=gptload&amp;promo=gptload" target="_blank" rel="sponsored noopener noreferrer"><img src="./screenshot/sidrune-ai.png" alt="Sidrune AI" width="150"></a></td>
+<td><strong>一つの入口で、世界の主要AIモデルに接続・管理</strong><br>Sidrune AIは、個人開発者、技術チーム、企業向けに、統一APIで世界の主要AIモデルへの接続と管理を提供します。複数経路の動的なスケジューリングで可用性を高め、モデルの性能、応答時間、料金を透明に確認できます。モデルや経路によっては、API利用料を公式価格または基準価格より40%〜98%抑えられます。今すぐアクセスして登録すると、$3分のAPIクレジットを受け取れます。（<a href="https://sidrune.ai/register?source=github&amp;campaign=gptload&amp;promo=gptload" target="_blank" rel="sponsored noopener noreferrer">専用リンク</a>）</td>
+</tr>
+<tr>
+<td width="180"><a href="https://www.axisnow.io/zh"><img src="./screenshot/axisnow.jpg" alt="AxisNow" width="150"></a></td>
+<td>ウェブサイトと API を保護・高速化し、<strong>中国本土</strong>および世界各地のアクセス体験にも配慮し、クライアント SDK を通じて高速化とセキュリティの機能をネイティブ／モバイルアプリにまで拡張します — <strong>自社構築・プライベート運用 CDN｜サブスクリプション型高防御 CDN｜自主的に制御でき、柔軟に組み合わせられる CDN ネットワーク。</strong></td>
+</tr>
+<tr>
+<td width="180"><a href="https://go.apimart.ai/gh-gpt-load"><img src="./screenshot/apimart.png" alt="APIMart" width="150"></a></td>
+<td>APIMartによる本プロジェクトへのスポンサー支援に感謝します！APIMartはAI画像・動画生成に特化した低価格APIプラットフォームで、GPT-Image-2は1枚$0.006から、1ドルで160枚以上の画像を生成できます。画像と動画の両方に対応する1つの非同期APIで、タスクを送信してIDを取得し、ポーリングまたはコールバックで結果を取得できます。数万枚規模の一括処理でもタイムアウトせず、モデルを切り替えてもコードを変更する必要はありません。従量課金制で月額料金は不要です。<a href="https://go.apimart.ai/gh-gpt-load">こちらの登録リンク</a>から登録して、すぐにご利用いただけます。</td>
+</tr>
+</tbody>
+</table>
+
+</details>
+
+## GPT-Load を選ぶ理由
+
+アプリケーション側で必要なのは、一つの Base URL と一つの AccessKey だけです。プロバイダー、アカウント、認証情報、モデル、ルーティングポリシーはすべて管理画面で設定します。
+
+<img src="./screenshot/architecture-overview.svg" alt="GPT-Load の統合アクセスとアップストリームルーティング構成図" width="860">
+
+- **単一ゲートウェイでネイティブプロトコルを維持** — 公式 API、クラウド基盤、モデルサービス、互換中継を一元管理しながら、クライアントは OpenAI、Anthropic、Gemini のネイティブインターフェイスをそのまま使えます。
+- **API キーとサブスクリプションを統一管理** — Codex、Claude、Antigravity、Grok と API キーチャネルで、認証情報管理・スケジューリング・健全性管理を共通化します。
+- **スケジューリングと障害分離を内蔵** — 複数認証情報のスケジューリング、設定可能なウェイト、リトライ、クールダウン、ブラックリスト、セッションアフィニティにより、過負荷や失効の影響を抑えます。
+- **可観測で導入しやすく、データを自己管理** — 健全性、ルート、ログ、使用量、コスト概算を確認でき、SQLite、MySQL、PostgreSQL とローカル認証情報暗号化を単一バイナリで利用できます。
 
 ## クイックスタート
 
-### システム要件
+> [!WARNING]
+> 1.x を使用している場合は、先に[「1.x からの移行」](#1x-からの移行)を確認してください。2.0 は 1.x データを開く・インポートする・その場で移行することはできません。
 
-- Go 1.23+（ソースビルド用）
-- Docker（コンテナ化デプロイメント用）
-- MySQL、PostgreSQL、またはSQLite（データベースストレージ用）
-- Redis（キャッシュと分散調整用、オプション）
+### 1. サービスを起動する
 
-### 方法1: Dockerクイックスタート
+Docker と Docker Compose が必要です。
 
 ```bash
-docker run -d --name gpt-load \
-    -p 3001:3001 \
-    -e AUTH_KEY=your-secure-key-here \
-    -v "$(pwd)/data":/app/data \
-    ghcr.io/tbphp/gpt-load:latest
-```
-
-> `your-secure-key-here`を強力なパスワードに変更してください（デフォルト値は絶対に使用しないでください）。その後、管理インターフェースにログインできます：<http://localhost:3001>
-
-### 方法2: Docker Composeを使用（推奨）
-
-**インストールコマンド：**
-
-```bash
-# ディレクトリを作成
-mkdir -p gpt-load && cd gpt-load
-
-# 設定ファイルをダウンロード
-wget https://raw.githubusercontent.com/tbphp/gpt-load/refs/heads/main/docker-compose.yml
-wget -O .env https://raw.githubusercontent.com/tbphp/gpt-load/refs/heads/main/.env.example
-
-# .envファイルを編集し、AUTH_KEYを強力なパスワードに変更します。デフォルトやsk-123456のような単純なキーは絶対に使用しないでください。
-
-# サービスを開始
-docker compose up -d
-```
-
-デプロイメント前に、デフォルトの管理キー（AUTH_KEY）を必ず変更してください。推奨フォーマット：sk-prod-[32文字のランダム文字列]。
-
-デフォルトのインストールは、軽量な単一インスタンスアプリケーションに適したSQLiteバージョンを使用します。
-
-MySQL、PostgreSQL、Redisをインストールする必要がある場合は、`docker-compose.yml`ファイルで必要なサービスのコメントを解除し、対応する環境変数を設定して、再起動してください。
-
-**その他のコマンド：**
-
-```bash
-# サービスステータスを確認
-docker compose ps
-
-# ログを表示
-docker compose logs -f
-
-# サービスを再起動
-docker compose down && docker compose up -d
-
-# 最新バージョンに更新
-docker compose pull && docker compose down && docker compose up -d
-```
-
-デプロイメント後：
-
-- Web管理インターフェースにアクセス：<http://localhost:3001>
-- APIプロキシアドレス：<http://localhost:3001/proxy>
-
-> 変更したAUTH_KEYを使用して管理インターフェースにログインしてください。
-
-### 方法3: ソースビルド
-
-ソースビルドには、ローカルにインストールされたデータベース（SQLite、MySQL、またはPostgreSQL）とRedis（オプション）が必要です。
-
-```bash
-# クローンとビルド
-git clone https://github.com/tbphp/gpt-load.git
+git clone --depth 1 https://github.com/tbphp/gpt-load.git
 cd gpt-load
-go mod tidy
 
-# 設定を作成
 cp .env.example .env
-
-# .envファイルを編集し、AUTH_KEYを強力なパスワードに変更します。デフォルトやsk-123456のような単純なキーは絶対に使用しないでください。
-# .envでDATABASE_DSNとREDIS_DSNの設定を変更
-# REDIS_DSNはオプションです。設定されていない場合、メモリストレージが有効になります
-
-# 実行
-make run
-```
-
-デプロイメント後：
-
-- Web管理インターフェースにアクセス：<http://localhost:3001>
-- APIプロキシアドレス：<http://localhost:3001/proxy>
-
-> 変更したAUTH_KEYを使用して管理インターフェースにログインしてください。
-
-### 方法4: クラスターデプロイメント
-
-クラスターデプロイメントでは、すべてのノードが同じMySQL（またはPostgreSQL）とRedisに接続する必要があり、Redisは必須です。統一された分散MySQLとRedisクラスターの使用を推奨します。
-
-**デプロイメント要件：**
-
-- すべてのノードは同一の`AUTH_KEY`、`DATABASE_DSN`、`REDIS_DSN`を設定する必要があります
-- リーダー・フォロワーアーキテクチャで、フォロワーノードは環境変数を設定する必要があります：`IS_SLAVE=true`
-
-詳細については、[クラスターデプロイメントドキュメント](https://www.gpt-load.com/docs/cluster?lang=ja)を参照してください。
-
-## 設定システム
-
-### 設定アーキテクチャの概要
-
-GPT-Loadは二層設定アーキテクチャを採用しています：
-
-#### 1. 静的設定（環境変数）
-
-- **特性**: アプリケーション起動時に読み込まれ、実行時は不変、有効にするにはアプリケーションの再起動が必要
-- **用途**: データベース接続、サーバーポート、認証キーなどのインフラストラクチャ設定
-- **管理**: `.env`ファイルまたはシステム環境変数を介して設定
-
-#### 2. 動的設定（ホットリロード）
-
-- **システム設定**: データベースに保存され、アプリケーション全体に統一された動作標準を提供
-- **グループ設定**: 特定のグループ用にカスタマイズされた動作パラメータ、システム設定を上書き可能
-- **設定優先度**: グループ設定 > システム設定 > 環境設定
-- **特性**: ホットリロードをサポート、変更後はアプリケーションの再起動なしで即座に有効
-
-<details>
-<summary>静的設定（環境変数）</summary>
-
-**サーバー設定：**
-
-| 設定                     | 環境変数                           | デフォルト      | 説明                                       |
-| ----------------------- | ---------------------------------- | -------------- | ----------------------------------------- |
-| サービスポート           | `PORT`                             | 3001           | HTTPサーバーリスニングポート                |
-| サービスアドレス         | `HOST`                             | 0.0.0.0        | HTTPサーバーバインディングアドレス           |
-| 読み取りタイムアウト     | `SERVER_READ_TIMEOUT`              | 60             | HTTPサーバー読み取りタイムアウト（秒）       |
-| 書き込みタイムアウト     | `SERVER_WRITE_TIMEOUT`             | 600            | HTTPサーバー書き込みタイムアウト（秒）       |
-| アイドルタイムアウト     | `SERVER_IDLE_TIMEOUT`              | 120            | HTTP接続アイドルタイムアウト（秒）          |
-| グレースフルシャットダウンタイムアウト | `SERVER_GRACEFUL_SHUTDOWN_TIMEOUT` | 10   | サービスグレースフルシャットダウン待機時間（秒）|
-| フォロワーモード         | `IS_SLAVE`                         | false          | クラスターデプロイメント用フォロワーノード識別子|
-| タイムゾーン            | `TZ`                               | `Asia/Shanghai` | タイムゾーンを指定                          |
-
-**セキュリティ設定：**
-
-| 設定        | 環境変数            | デフォルト | 説明                                                                              |
-| ---------- | ------------------- | --------- | -------------------------------------------------------------------------------- |
-| 管理キー    | `AUTH_KEY`          | -         | **管理端末**のアクセス認証キー、強力なパスワードに変更してください                    |
-| 暗号化キー  | `ENCRYPTION_KEY`    | -         | APIキーを保存時に暗号化。任意の文字列をサポート、空の場合は暗号化を無効化。[データ暗号化移行](#データ暗号化移行)を参照 |
-
-**データベース設定：**
-
-| 設定               | 環境変数         | デフォルト            | 説明                                    |
-| ----------------- | ---------------- | -------------------- | --------------------------------------- |
-| データベース接続   | `DATABASE_DSN`   | `./data/gpt-load.db` | データベース接続文字列（DSN）またはファイルパス |
-| Redis接続         | `REDIS_DSN`      | -                    | Redis接続文字列、空の場合はメモリストレージを使用 |
-
-**パフォーマンス＆CORS設定：**
-
-| 設定                   | 環境変数                  | デフォルト                     | 説明                                    |
-| --------------------- | ------------------------- | ----------------------------- | --------------------------------------- |
-| 最大同時リクエスト数    | `MAX_CONCURRENT_REQUESTS` | 100                          | システムが許可する最大同時リクエスト数      |
-| CORS有効化            | `ENABLE_CORS`             | false                         | クロスオリジンリソース共有を有効にするか    |
-| 許可されたオリジン     | `ALLOWED_ORIGINS`         | -                            | 許可されたオリジン、カンマ区切り           |
-| 許可されたメソッド     | `ALLOWED_METHODS`         | `GET,POST,PUT,DELETE,OPTIONS` | 許可されたHTTPメソッド                   |
-| 許可されたヘッダー     | `ALLOWED_HEADERS`         | `*`                          | 許可されたリクエストヘッダー、カンマ区切り   |
-| 認証情報の許可        | `ALLOW_CREDENTIALS`       | false                        | 認証情報の送信を許可するか                |
-
-**ログ設定：**
-
-| 設定                | 環境変数          | デフォルト             | 説明                              |
-| ------------------ | ----------------- | --------------------- | --------------------------------- |
-| ログレベル          | `LOG_LEVEL`       | `info`                | ログレベル：debug, info, warn, error |
-| ログフォーマット    | `LOG_FORMAT`      | `text`                | ログフォーマット：text, json        |
-| ファイルログ有効化   | `LOG_ENABLE_FILE` | false                 | ファイルログ出力を有効にするか        |
-| ログファイルパス    | `LOG_FILE_PATH`   | `./data/logs/app.log` | ログファイル保存パス                 |
-
-**プロキシ設定：**
-
-GPT-Loadは、アップストリームAIプロバイダーへのリクエストを行うために環境変数からプロキシ設定を自動的に読み取ります。
-
-| 設定        | 環境変数       | デフォルト | 説明                                         |
-| ---------- | -------------- | --------- | -------------------------------------------- |
-| HTTPプロキシ | `HTTP_PROXY`  | -         | HTTPリクエスト用のプロキシサーバーアドレス       |
-| HTTPSプロキシ| `HTTPS_PROXY` | -         | HTTPSリクエスト用のプロキシサーバーアドレス      |
-| プロキシなし | `NO_PROXY`    | -         | プロキシをバイパスするホストまたはドメインのカンマ区切りリスト |
-
-サポートされているプロキシプロトコルフォーマット：
-
-- **HTTP**: `http://user:pass@host:port`
-- **HTTPS**: `https://user:pass@host:port`
-- **SOCKS5**: `socks5://user:pass@host:port`
-</details>
-
-<details>
-<summary>動的設定（ホットリロード）</summary>
-
-**基本設定：**
-
-| 設定                | フィールド名                        | デフォルト              | グループ上書き | 説明                                    |
-| ------------------ | ---------------------------------- | ---------------------- | ------------ | --------------------------------------- |
-| プロジェクトURL     | `app_url`                          | `http://localhost:3001` | ❌           | プロジェクトベースURL                     |
-| グローバルプロキシキー | `proxy_keys`                      | `AUTH_KEY`の初期値       | ❌           | グローバルに有効なプロキシキー、カンマ区切り |
-| ログ保持日数        | `request_log_retention_days`       | 7                      | ❌           | リクエストログ保持日数、0でクリーンアップなし |
-| ログ書き込み間隔    | `request_log_write_interval_minutes` | 1                    | ❌           | データベースへのログ書き込みサイクル（分）   |
-| リクエストボディログ有効化 | `enable_request_body_logging` | false                 | ✅           | リクエストログに完全なリクエストボディコンテンツを記録するか |
-
-**リクエスト設定：**
-
-| 設定                        | フィールド名               | デフォルト | グループ上書き | 説明                                                      |
-| -------------------------- | ------------------------- | --------- | ------------ | --------------------------------------------------------- |
-| リクエストタイムアウト       | `request_timeout`         | 600       | ✅           | 転送リクエストの完全なライフサイクルタイムアウト（秒）          |
-| 接続タイムアウト            | `connect_timeout`         | 15        | ✅           | アップストリームサービスとの接続確立のタイムアウト（秒）        |
-| アイドル接続タイムアウト     | `idle_conn_timeout`       | 120       | ✅           | HTTPクライアントアイドル接続タイムアウト（秒）                |
-| レスポンスヘッダータイムアウト | `response_header_timeout` | 600      | ✅           | アップストリームレスポンスヘッダーの待機タイムアウト（秒）      |
-| 最大アイドル接続数          | `max_idle_conns`          | 100       | ✅           | 接続プールの最大総アイドル接続数                             |
-| ホストごとの最大アイドル接続数 | `max_idle_conns_per_host` | 50       | ✅           | アップストリームホストごとの最大アイドル接続数                |
-| プロキシURL                | `proxy_url`               | -         | ✅           | 転送リクエスト用のHTTP/HTTPSプロキシ、空の場合は環境を使用    |
-
-**キー設定：**
-
-| 設定                    | フィールド名                        | デフォルト | グループ上書き | 説明                                                        |
-| ---------------------- | ---------------------------------- | --------- | ------------ | ----------------------------------------------------------- |
-| 最大リトライ回数        | `max_retries`                      | 3         | ✅           | 単一リクエストで異なるキーを使用する最大リトライ回数              |
-| ブラックリストしきい値   | `blacklist_threshold`              | 3         | ✅           | キーがブラックリストに入る前の連続失敗回数                       |
-| キー検証間隔            | `key_validation_interval_minutes`  | 60        | ✅           | バックグラウンドスケジュールキー検証サイクル（分）                |
-| キー検証並行数          | `key_validation_concurrency`       | 10        | ✅           | 無効なキーのバックグラウンド検証の並行数                         |
-| キー検証タイムアウト     | `key_validation_timeout_seconds`   | 20        | ✅           | バックグラウンドでの個別キー検証のAPIリクエストタイムアウト（秒）  |
-
-</details>
-
-## データ暗号化移行
-
-GPT-LoadはAPIキーの暗号化保存をサポートしています。いつでも暗号化を有効化、無効化、または暗号化キーを変更できます。
-
-<details>
-<summary>データ暗号化移行の詳細を表示</summary>
-
-### 移行シナリオ
-
-- **暗号化を有効化**: プレーンテキストデータを暗号化して保存 - `--to <新しいキー>`を使用
-- **暗号化を無効化**: 暗号化されたデータをプレーンテキストに復号化 - `--from <現在のキー>`を使用
-- **暗号化キーを変更**: 暗号化キーを置き換える - `--from <現在のキー> --to <新しいキー>`を使用
-
-### 操作手順
-
-#### Docker Composeデプロイメント
-
-```bash
-# 1. イメージを更新（最新バージョンを使用していることを確認）
-docker compose pull
-
-# 2. サービスを停止
-docker compose down
-
-# 3. データベースをバックアップ（強く推奨）
-# 移行前に、操作や例外によるキーの損失を避けるため、データベースを手動でバックアップするか、キーをエクスポートする必要があります。
-
-# 4. 移行コマンドを実行
-# 暗号化を有効化（your-32-char-secret-keyはあなたのキー、32文字以上のランダム文字列の使用を推奨）
-docker compose run --rm gpt-load migrate-keys --to "your-32-char-secret-key"
-
-# 暗号化を無効化
-docker compose run --rm gpt-load migrate-keys --from "your-current-key"
-
-# 暗号化キーを変更
-docker compose run --rm gpt-load migrate-keys --from "old-key" --to "new-32-char-secret-key"
-
-# 5. 設定ファイルを更新
-# .envファイルを編集し、ENCRYPTION_KEYを--toパラメータと一致させる
-# 暗号化を無効にする場合は、ENCRYPTION_KEYを削除するか空に設定
-vim .env
-# 追加または変更: ENCRYPTION_KEY=your-32-char-secret-key
-
-# 6. サービスを再起動
 docker compose up -d
 ```
 
-#### ソースビルドデプロイメント
+起動を確認します：
 
 ```bash
-# 1. サービスを停止
-# 実行中のサービスプロセスを停止（Ctrl+Cまたはプロセスをkill）
-
-# 2. データベースをバックアップ（強く推奨）
-# 移行前に、操作や例外によるキーの損失を避けるため、データベースを手動でバックアップするか、キーをエクスポートする必要があります。
-
-# 3. 移行コマンドを実行
-# 暗号化を有効化
-make migrate-keys ARGS="--to your-32-char-secret-key"
-
-# 暗号化を無効化
-make migrate-keys ARGS="--from your-current-key"
-
-# 暗号化キーを変更
-make migrate-keys ARGS="--from old-key --to new-32-char-secret-key"
-
-# 4. 設定ファイルを更新
-# .envファイルを編集し、ENCRYPTION_KEYを--toパラメータと一致させる
-echo "ENCRYPTION_KEY=your-32-char-secret-key" >> .env
-
-# 5. サービスを再起動
-make run
+curl --fail http://127.0.0.1:3001/health
 ```
 
-### 重要な注意事項
-
-⚠️ **重要な注意事項**：
-- **ENCRYPTION_KEYが失われると、暗号化されたデータは復元できません！** このキーを安全にバックアップしてください。パスワードマネージャーまたは安全なキー管理システムの使用を検討してください
-- データの不整合を避けるため、移行前に**サービスを停止する必要があります**
-- 移行が失敗して復旧が必要な場合に備えて、**データベースをバックアップ**することを強く推奨します
-- セキュリティのため、キーは**32文字以上のランダム文字列**を使用してください
-- 移行後、`.env`の`ENCRYPTION_KEY`が`--to`パラメータと一致していることを確認してください
-- 暗号化を無効にする場合は、`ENCRYPTION_KEY`設定を削除またはクリアしてください
-
-### キー生成の例
+初回起動時に管理キーが自動生成されます。読み出して安全に保管してください：
 
 ```bash
-# 安全なランダムキーを生成（32文字）
-openssl rand -base64 32 | tr -d "=+/" | cut -c1-32
+docker compose exec gpt-load sh -c 'cat /app/data/auth.key'
 ```
+
+<http://127.0.0.1:3001> を開き、そのキーでコンソールにログインします。
+
+> 起動前に `.env` の `AUTH_KEY` で管理キーを明示的に指定することもできます。既定ではローカルアドレスのみを待ち受け、インターネットには直接公開されません。
+
+### 2. 初期設定を行う
+
+初期設定は 3 ステップです：
+
+1. **チャネルを追加** — アップストリームサービスを選び、API キーを 1 つ以上登録します。サブスクリプションチャネルは画面の案内に従って OAuth 認可または認証情報のインポートを行います。
+2. **Group を作成** — チャネルを選び、利用可能なモデルと実行ポリシーを設定します。
+3. **AccessKey を作成** — アクセスを許可する Group とクライアントプロトコルを設定し、生成された AccessKey をアプリケーションに渡します。
+
+<details>
+<summary>サブスクリプションチャネルの OAuth コールバックポート</summary>
+
+Codex、Claude、Antigravity の OAuth クライアントは固定のコールバックポートを使用します。Compose はそれらを `HOST` で設定したアドレスに公開し、既定値は `127.0.0.1` です。`HOST=0.0.0.0` を設定すると、これらのコールバックポートもホストの全ネットワークインターフェイスに公開されます。ポートはアップストリームのクライアント側で固定されているため、同一ホスト上で同時に実行できる既定の Compose インスタンスは 1 つだけです。
+
+SSH やリモートブラウザ経由で操作する場合、ブラウザの `localhost` から GPT-Load に到達できないことがあります。その場合はコールバック URL 全体を認可ダイアログに貼り付けることでフローを完了できます。
 
 </details>
 
-## Web管理インターフェース
+## 画面プレビュー
 
-管理コンソールにアクセス：<http://localhost:3001>（デフォルトアドレス）
+**グループ概要** — チャネル、モデル、認証情報数、トラフィック、健全性をまとめて確認
 
-### インターフェースの概要
+<img src="./screenshot/groups-ja-JP.png" alt="GPT-Load の新しいグループ概要" width="860">
 
-<img src="screenshot/dashboard.png" alt="ダッシュボード" width="600"/>
+**使用量統計** — リクエスト傾向、キャッシュヒット率、Token 分類、コスト概算を確認
 
-<br/>
+<img src="./screenshot/usage-ja-JP.png" alt="GPT-Load の新しい使用量統計" width="860">
 
-<img src="screenshot/keys.png" alt="キー管理" width="600"/>
+## サポート範囲
 
-<br/>
+### クライアントプロトコル
 
-Web管理インターフェースは以下の機能を提供します：
+| プロトコル              | 主なエンドポイント                                                 |
+| ----------------------- | ------------------------------------------------------------------ |
+| OpenAI Chat Completions | `POST /v1/chat/completions`                                        |
+| OpenAI Responses        | `/v1/responses` およびそのリソースパス                             |
+| OpenAI Images           | `POST /v1/images/...`                                              |
+| OpenAI Embeddings       | `POST /v1/embeddings`                                              |
+| Rerank                  | `POST /v1/rerank`                                                  |
+| Mistral ネイティブ      | `/v1/ocr`、`/v1/audio/...` |
+| Anthropic Messages      | `POST /v1/messages`                                                |
+| Gemini                  | `/v1beta/models/...`                                               |
+| Gemini Embeddings       | `POST /v1beta/models/{model}:embedContent` / `:batchEmbedContents` |
 
-- **ダッシュボード**: リアルタイム統計とシステムステータスの概要
-- **キー管理**: AIサービスプロバイダーグループの作成と設定、APIキーの追加、削除、監視
-- **リクエストログ**: 詳細なリクエスト履歴とデバッグ情報
-- **システム設定**: グローバル設定管理とホットリロード
+### 組み込みチャネル
 
-## API使用ガイド
+- **公式・クラウド**：OpenAI、Anthropic、Gemini、xAI、Azure OpenAI、AWS Bedrock、Google Vertex AI
+- **モデルサービス**：DeepSeek、Moonshot AI、SiliconFlow、Zhipu AI、Alibaba、Volcengine、OpenRouter、Cline、Groq、Cerebras、Mistral、Nebius、Parasail、Wafer、Hugging Face（チャット）、Cohere（テキストリランキング）、OpenCode Go、OpenCode Zen
+- **サブスクリプション**：Codex、Claude、Antigravity、Grok
+- **カスタム**：OpenAI Compatible（任意の互換中継）
+
+## デプロイとデータ
+
+Docker Compose は既定でアプリケーション管理の SQLite を使用します。データは `gpt-load-data` という名前付きボリュームに保存され、データベース、`auth.key`、`encryption.key` を含みます。
+
+> [!IMPORTANT]
+> `encryption.key` はチャネル認証情報の復号に使われます。バックアップや移行の際は、データベースと鍵を**必ず一緒に保管**してください。鍵を失ったり置き換えたりすると、既存の暗号化済み認証情報は復元できません。また現行バージョンはマスターキーのローテーションに対応していません。
 
 <details>
-<summary>プロキシインターフェースの呼び出し</summary>
+<summary>外部データベースを使う</summary>
 
-GPT-Loadはグループ名を通じてリクエストを異なるAIサービスにルーティングします。使用方法は以下の通りです：
-
-### 1. プロキシエンドポイントフォーマット
+統一された `DATABASE_DSN` で SQLite、MySQL、PostgreSQL に接続します：
 
 ```text
-http://localhost:3001/proxy/{group_name}/{original_api_path}
+mysql://user:password@db.example:3306/gpt_load?charset=utf8mb4&collation=utf8mb4_bin
+postgres://user:password@db.example:5432/gpt_load?sslmode=require
 ```
-
-- `{group_name}`: 管理インターフェースで作成されたグループ名
-- `{original_api_path}`: 元のAIサービスパスと完全に一致を保つ
-
-### 2. 認証方法
-
-Web管理インターフェースで**プロキシキー**を設定します。システムレベルとグループレベルのプロキシキーをサポートします。
-
-- **認証方法**: ネイティブAPIと一致しますが、元のキーを設定されたプロキシキーに置き換えます。
-- **キーのスコープ**: システム設定で設定された**グローバルプロキシキー**はすべてのグループで使用できます。グループで設定された**グループプロキシキー**は現在のグループでのみ有効です。
-- **フォーマット**: 複数のキーはカンマで区切られます。
-
-### 3. OpenAIインターフェースの例
-
-`openai`という名前のグループが作成されたと仮定：
-
-**元の呼び出し：**
-
-```bash
-curl -X POST https://api.openai.com/v1/chat/completions \
-  -H "Authorization: Bearer sk-your-openai-key" \
-  -H "Content-Type: application/json" \
-  -d '{"model": "gpt-4.1-mini", "messages": [{"role": "user", "content": "Hello"}]}'
-```
-
-**プロキシ呼び出し：**
-
-```bash
-curl -X POST http://localhost:3001/proxy/openai/v1/chat/completions \
-  -H "Authorization: Bearer your-proxy-key" \
-  -H "Content-Type: application/json" \
-  -d '{"model": "gpt-4.1-mini", "messages": [{"role": "user", "content": "Hello"}]}'
-```
-
-**必要な変更：**
-
-- `https://api.openai.com`を`http://localhost:3001/proxy/openai`に置き換える
-- 元のAPIキーを**プロキシキー**に置き換える
-
-### 4. Geminiインターフェースの例
-
-`gemini`という名前のグループが作成されたと仮定：
-
-**元の呼び出し：**
-
-```bash
-curl -X POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=your-gemini-key \
-  -H "Content-Type: application/json" \
-  -d '{"contents": [{"parts": [{"text": "Hello"}]}]}'
-```
-
-**プロキシ呼び出し：**
-
-```bash
-curl -X POST http://localhost:3001/proxy/gemini/v1beta/models/gemini-2.5-pro:generateContent?key=your-proxy-key \
-  -H "Content-Type: application/json" \
-  -d '{"contents": [{"parts": [{"text": "Hello"}]}]}'
-```
-
-**必要な変更：**
-
-- `https://generativelanguage.googleapis.com`を`http://localhost:3001/proxy/gemini`に置き換える
-- URLパラメータの`key=your-gemini-key`を**プロキシキー**に置き換える
-
-### 5. Anthropicインターフェースの例
-
-`anthropic`という名前のグループが作成されたと仮定：
-
-**元の呼び出し：**
-
-```bash
-curl -X POST https://api.anthropic.com/v1/messages \
-  -H "x-api-key: sk-ant-api03-your-anthropic-key" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "Content-Type: application/json" \
-  -d '{"model": "claude-sonnet-4-20250514", "messages": [{"role": "user", "content": "Hello"}]}'
-```
-
-**プロキシ呼び出し：**
-
-```bash
-curl -X POST http://localhost:3001/proxy/anthropic/v1/messages \
-  -H "x-api-key: your-proxy-key" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "Content-Type: application/json" \
-  -d '{"model": "claude-sonnet-4-20250514", "messages": [{"role": "user", "content": "Hello"}]}'
-```
-
-**必要な変更：**
-
-- `https://api.anthropic.com`を`http://localhost:3001/proxy/anthropic`に置き換える
-- `x-api-key`ヘッダーの元のAPIキーを**プロキシキー**に置き換える
-
-### 6. サポートされているインターフェース
-
-**OpenAIフォーマット：**
-
-- `/v1/chat/completions` - チャット会話
-- `/v1/completions` - テキスト補完
-- `/v1/embeddings` - テキスト埋め込み
-- `/v1/models` - モデルリスト
-- その他すべてのOpenAI互換インターフェース
-
-**Geminiフォーマット：**
-
-- `/v1beta/models/*/generateContent` - コンテンツ生成
-- `/v1beta/models` - モデルリスト
-- その他すべてのGeminiネイティブインターフェース
-
-**Anthropicフォーマット：**
-
-- `/v1/messages` - メッセージ会話
-- `/v1/models` - モデルリスト（利用可能な場合）
-- その他すべてのAnthropicネイティブインターフェース
-
-### 7. クライアントSDK設定
-
-**OpenAI Python SDK：**
-
-```python
-from openai import OpenAI
-
-client = OpenAI(
-    api_key="your-proxy-key",  # プロキシキーを使用
-    base_url="http://localhost:3001/proxy/openai"  # プロキシエンドポイントを使用
-)
-
-response = client.chat.completions.create(
-    model="gpt-4.1-mini",
-    messages=[{"role": "user", "content": "Hello"}]
-)
-```
-
-**Google Gemini SDK (Python)：**
-
-```python
-import google.generativeai as genai
-
-# APIキーとベースURLを設定
-genai.configure(
-    api_key="your-proxy-key",  # プロキシキーを使用
-    client_options={"api_endpoint": "http://localhost:3001/proxy/gemini"}
-)
-
-model = genai.GenerativeModel('gemini-2.5-pro')
-response = model.generate_content("Hello")
-```
-
-**Anthropic SDK (Python)：**
-
-```python
-from anthropic import Anthropic
-
-client = Anthropic(
-    api_key="your-proxy-key",  # プロキシキーを使用
-    base_url="http://localhost:3001/proxy/anthropic"  # プロキシエンドポイントを使用
-)
-
-response = client.messages.create(
-    model="claude-sonnet-4-20250514",
-    messages=[{"role": "user", "content": "Hello"}]
-)
-```
-
-> **重要な注意**: トランスペアレントプロキシサービスとして、GPT-Loadはさまざまなアイサービスのネイティブ APIフォーマットと認証方法を完全に保持します。エンドポイントアドレスを置き換え、管理インターフェースで設定された**プロキシキー**を使用するだけで、シームレスな移行が可能です。
 
 </details>
 
-## 関連プロジェクト
+よく使う運用コマンド：
 
-- **[New API](https://github.com/QuantumNous/new-api)** - 優秀なAIモデル統合管理配信システム
+```bash
+docker compose logs -f      # ログを確認
+docker compose pull && docker compose up -d   # 最新の 2.x イメージへ更新
+docker compose stop         # サービスを停止
+```
 
-## 貢献
+公式 Compose は `ghcr.io/tbphp/gpt-load:2` を使用します。GA 前の `2` は検証済みの 2.0 Beta / RC を追跡し、GA 後は安定版 2.x のみを追跡します。イメージの完全なタグからは Git tag の `v` 接頭辞を除き（例：`2.0.0-beta.25`）、`2.0-beta` は 2.0 Beta チャネルとして残します。`latest` は引き続き 1.x を指します。
 
-GPT-Loadに貢献してくださったすべての開発者に感謝します！
+<details>
+<summary>ネイティブバイナリを使う</summary>
 
-[![Contributors](https://contrib.rocks/image?repo=tbphp/gpt-load)](https://github.com/tbphp/gpt-load/graphs/contributors)
+[GitHub Releases](https://github.com/tbphp/gpt-load/releases) からプラットフォームに合ったファイルをダウンロードし、同梱の `SHA256SUMS` で検証してから使用してください：
 
-## ライセンス
+```bash
+chmod +x ./gpt-load-linux-amd64
 
-MITライセンス - 詳細は[LICENSE](LICENSE)ファイルを参照してください。
+HOST=127.0.0.1 DATA_DIR=./data ./gpt-load-linux-amd64
+```
 
-## スター履歴
+起動後 <http://127.0.0.1:3001> にアクセスします。Linux、macOS（amd64 / arm64）、Windows の計 5 種類のポータブルビルドを提供し、`gpt-load-windows-amd64.exe` は従来どおりフォアグラウンドで動作します。
 
-[![Stargazers over time](https://starchart.cc/tbphp/gpt-load.svg?variant=adaptive)](https://starchart.cc/tbphp/gpt-load)
+Windows の一般ユーザーは代わりに `gpt-load-windows-setup.exe` を利用できます。管理者権限を一度承認すると、低権限の Windows サービスをインストールして起動し、自動起動を設定したうえで、デスクトップとスタートメニューに GPT-Load 管理画面へのショートカットを作成します。インストール中に生成された管理キーが表示されるため、画面を閉じる前に保存してください。保護されたキーは `%ProgramData%\GPT-Load\data\auth.key` に残ります。サービス設定と `.env` は `%ProgramData%\GPT-Load`、永続データは `%ProgramData%\GPT-Load\data` に保存されます。
+
+新しい Setup による上書きインストールでは、サービスを安全に停止してから更新します。Windows のアンインストールはプログラムとサービスを削除しますが、データは保持します。上級ユーザーは `gpt-load-windows-amd64.exe service start|stop|restart|status` でもサービスを管理できます。
+
+</details>
+
+### 環境設定
+
+アプリケーションは起動時にカレントディレクトリの `.env` を読み込み、既存のプロセス環境変数を優先します。特記がない限り、変更後はプロセスまたはコンテナを再起動してください。一般的な設定テンプレートは [`.env.example`](.env.example) を参照してください。
+
+<details>
+<summary>すべての環境変数を表示</summary>
+
+| 変数 | 既定値 | 説明 |
+| --- | --- | --- |
+| `HOST` | `127.0.0.1` | Native モードの待受アドレスであり、Compose のメインポートと OAuth コールバックポートをホストに公開する既定アドレスです。Compose コンテナ内部では常に `0.0.0.0` で待ち受けます。 |
+| `PORT` | `3001` | HTTP サービスポート。`1–65535` である必要があり、Compose はコンテナポート、ホスト公開ポート、ヘルスチェックにも使用します。 |
+| `BIND_ADDRESS` | 空、`HOST` を継承 | Compose のみ。OAuth コールバックポートを変更せず、メインサービスポートのホスト公開アドレスを上書きします。 |
+| `OAUTH_CALLBACK_BIND_ADDRESS` | 空、`HOST` を継承 | Compose のみ。固定 OAuth コールバックポート `1455`、`54545`、`51121` のホスト公開アドレスを上書きします。 |
+| `GRACEFUL_SHUTDOWN_TIMEOUT` | `10` | 停止シグナル後にリクエストの完了を待つ最大時間。正の整数、単位は秒です。 |
+| `CONTAINER_STOP_GRACE_PERIOD` | `15s` | Compose がコンテナを強制停止する前に待つ Docker duration。`GRACEFUL_SHUTDOWN_TIMEOUT` より長くすることを推奨します。 |
+| `READ_TIMEOUT` | `60` | HTTP リクエストの読み取りタイムアウト。正の整数、単位は秒です。 |
+| `IDLE_TIMEOUT` | `120` | HTTP keep-alive アイドル接続のタイムアウト。正の整数、単位は秒です。 |
+| `DATA_DIR` | `./data` | 管理対象データベース、`auth.key`、`encryption.key`、実行状態ファイルのディレクトリ。公式 Compose では `/app/data`、Windows Setup サービスでは `%ProgramData%\GPT-Load\data` を使用します。 |
+| `DATABASE_DSN` | 空、`${DATA_DIR}/gpt-load.db` を使用 | 空の場合はアプリケーション管理の SQLite を使用します。空でない場合は SQLite のパスまたは URL、MySQL URL、PostgreSQL URL に対応し、運用者管理の外部データベースとして扱います。コンテナ内のファイルパスはマウント済みディレクトリ内である必要があります。 |
+| `DATABASE_MAX_OPEN_CONNECTIONS` | `10` | MySQL と PostgreSQL の最大オープン接続数。正の整数である必要があります。SQLite は常に単一接続を使用します。 |
+| `DATABASE_MAX_IDLE_CONNECTIONS` | `5` | MySQL と PostgreSQL の最大アイドル接続数。正の整数かつ `DATABASE_MAX_OPEN_CONNECTIONS` 以下である必要があります。SQLite は常に単一接続を使用します。 |
+| `AUTH_KEY` | 空、`${DATA_DIR}/auth.key` を読み込むか生成 | 管理画面と `/api` 管理 API の Bearer キー。データプレーンの AccessKey とは異なります。 |
+| `ENCRYPTION_KEY` | 空、`${DATA_DIR}/encryption.key` を読み込むか生成 | チャネル認証情報を暗号化します。変更または紛失すると既存の認証情報を復号できないため、データベースと一緒にバックアップしてください。 |
+| `CLIENT_IP_HEADER` | 空、接続元 IP を使用 | `X-Forwarded-For` や `CF-Connecting-IP` などのクライアント IP ヘッダー。欠落・無効時は接続元 IP に戻ります。ログや AccessKey の IP 制限などで共用し、IPv4/IPv6 に対応。変更後は再起動が必要です。 |
+| `TRUSTED_PROXIES` | 空 | 任意のプロキシ IP または CIDR（カンマ区切り）。`CLIENT_IP_HEADER` 指定時のみ有効。空の場合は選択したヘッダーを直接信頼するため、デプロイ環境で信頼性を確保してください。指定時は接続元が一致した場合のみヘッダーを使用し、不一致なら接続元 IP を使用します。`X-Forwarded-For` は右から最初の非信頼 IP を採用（すべて信頼済みなら左端）、リスト未指定時は左端を採用。他のヘッダーは単一 IP のみ受け付けます。変更後は再起動が必要です。 |
+| `HTTP_PROXY` | 空 | HTTP アップストリームリクエストの環境プロキシ。 |
+| `HTTPS_PROXY` | 空 | HTTPS アップストリームリクエストの環境プロキシ。 |
+| `NO_PROXY` | 空 | 環境プロキシをバイパスするホスト、ドメイン、IP のカンマ区切りリスト。 |
+| `LOG_LEVEL` | `info` | `panic`、`fatal`、`error`、`warn`、`warning`、`info`、`debug`、`trace` に対応します。無効な値は警告を出して `info` に戻ります。 |
+| `LOG_FORMAT` | `text` | `text` と `json` に対応します。それ以外の値では起動に失敗します。 |
+| `MODELS_DEV_AUTO_SYNC_ENABLED` | 未設定、初期既定値 `true` | 未設定時は管理画面に保存された設定を使用します。設定時は Models.dev の自動同期を強制的に有効または無効にし、管理画面の同名オプションを読み取り専用にします。 |
+
+環境プロキシは、認証情報、Group、グローバル設定のいずれにもプロキシが指定されていない場合にのみ適用されます。
+
+</details>
+
+## 1.x からの移行
+
+> [!WARNING]
+> GPT-Load 2.0 は完全な書き直しです。1.x のデータを開く・インポートする・その場で移行することは**できません**。
+
+2.0 は独立したデータベース、`DATA_DIR`、ポート、Docker ボリュームでデプロイしてください。検証完了後に本番トラフィックを切り替え、ロールバック期間が終了するまで既存の 1.x 環境を保持してください。1.4.x メンテナンスラインのドキュメントは[公式ドキュメント](https://www.gpt-load.com/docs?lang=ja)にあります。
+
+## オープンソース依存
+
+GPT-Load の一部機能は以下のプロジェクトを基盤としています。感謝いたします：
+
+| プロジェクト                                                | 役割                                                                            | ライセンス |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------- | ---------- |
+| [Bifrost Core](https://github.com/maximhq/bifrost)          | 各プロバイダーの認証、リクエスト/レスポンス変換、ストリーミング、使用量の正規化 | Apache-2.0 |
+| [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) | サブスクリプションチャネルの OAuth と実行アダプター                             | MIT        |
+| [Lobe Icons](https://github.com/lobehub/lobe-icons)         | 管理画面のチャネルブランドアイコン                                              | MIT        |
+
+認証情報の保存、アカウント選択、スケジューリング、リトライ、健全性、アフィニティ、ログ、使用量ポリシーは GPT-Load が担います。サードパーティ表記は [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)、ライセンス全文は [`LICENSES/`](LICENSES/) にあり、各リリースには Go 依存関係を対象とした CycloneDX SBOM が付属します。
+
+チャネルアイコンは対応するアップストリームプロバイダーを識別するために使用しています。商標権は各所有者に帰属し、本プロジェクトはこれらのプロバイダーと提携関係や推奨関係にはありません。
+
+## プロジェクト支援
+
+<table>
+<tbody>
+<tr>
+<td align="center" width="33%">
+<a href="https://openai.com/">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="./screenshot/sponsor-openai-lockup-white.svg">
+<source media="(prefers-color-scheme: light)" srcset="./screenshot/sponsor-openai-lockup-black.svg">
+<img src="./screenshot/sponsor-openai-lockup-black.svg" alt="OpenAI" width="120">
+</picture>
+</a>
+<br><sub>プラットフォーム支援</sub>
+</td>
+<td align="center" width="33%">
+<a href="https://linux.do"><img src="./screenshot/l.png" alt="LINUX DO" width="120"></a>
+<br><sub>コミュニティ支援</sub>
+</td>
+<td align="center" width="33%">
+<a href="https://www.digitalocean.com/?refcode=3d52cff21342&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%202.svg" alt="DigitalOcean" width="120"></a>
+<br><sub>インフラ支援</sub>
+</td>
+</tr>
+</tbody>
+</table>
+
+---
+
+[MIT License](LICENSE) · [サードパーティ表記](THIRD_PARTY_NOTICES.md) · [セキュリティポリシー](SECURITY.md)
